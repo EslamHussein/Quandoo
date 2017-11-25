@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Quandoo</string>
+    <string name="loading">loading…</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">Type first or last name…</string>
+    <string name="no_customers">No Customers yet !!!</string>
+
+    <string name="table_number">Number : %1$s</string>
+    <string name="book_table">Book Table </string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="are_you_sure_to_book_table_number">Are you sure to book table number %1$s ?</string>
+    <string name="booking_table">Booking table…</string>
+    <string name="book_table_success">Book table success!</string>
+    <string name="book_table_failed">Book table failed!</string>
+    <string name="this_table_already_booked">This table already booked</string>
+    <string name="no_Tables">No tables yet!</string>
+
+
+</resources>

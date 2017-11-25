@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/padding_4dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="@dimen/padding_4dp">
+
+        <ImageView
+            android:id="@+id/image_view_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_face_36dp" />
+
+
+        <TextView
+            android:id="@+id/text_view_first_name"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/image_view_customer"
+            android:paddingStart="@dimen/padding_4dp"
+            tools:text="First Name" />
+
+        <TextView
+            android:id="@+id/text_view_last_name"
+            style="@style/CustomTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/text_view_first_name"
+            android:paddingStart="@dimen/padding_4dp"
+            tools:text="Last Name" />
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
