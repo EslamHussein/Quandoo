@@ -9,7 +9,6 @@ import java.util.concurrent.Callable;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -24,6 +23,7 @@ public class CustomerBusiness {
     public CustomerBusiness(ReservationsDBRepo dbRepo, ReservationsCloudRepo cloudRepo) {
         this.dbRepo = dbRepo;
         this.cloudRepo = cloudRepo;
+
     }
 
     public Observable<List<Customer>> getCustomersDB() {

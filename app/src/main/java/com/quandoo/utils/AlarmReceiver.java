@@ -10,12 +10,17 @@ import android.widget.Toast;
  */
 
 public class AlarmReceiver extends BroadcastReceiver {
+    boolean broadcastFlag;
+
+    public AlarmReceiver() {
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
         Intent clearTablesServiceIntent = new Intent(context, ClearTablesService.class);
         context.startService(clearTablesServiceIntent);
-
+        broadcastFlag = true;
 
     }
 }

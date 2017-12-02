@@ -19,7 +19,6 @@ public class ReservationsCloudRepoImpl extends BaseCloudRepo implements Reservat
 
     @Override
     public List<Boolean> getTables() throws Exception {
-
         return execute(create(ReservationsServices.class).getTableMap());
     }
 }

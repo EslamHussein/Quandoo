@@ -16,10 +16,6 @@ public class TextUtils {
         return App.get().getString(resId);
     }
 
-    public static float getDimension(@DimenRes int resId) {
-        return App.get().getResources().getDimension(resId);
-    }
-
 
     public static float getColor(@ColorRes int resId) {
         return App.get().getResources().getColor(resId);

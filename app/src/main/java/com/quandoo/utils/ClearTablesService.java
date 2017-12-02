@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 
 import com.quandoo.base.dto.RefreshTables;
+import com.quandoo.quandoo.injection.Injection;
+import com.quandoo.quandoo.model.db.ReservationDataBase;
 import com.quandoo.quandoo.model.db.ReservationsDBRepo;
 import com.quandoo.quandoo.model.db.ReservationsDBRepoImpl;
 
@@ -22,8 +24,8 @@ public class ClearTablesService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-
-        ReservationsDBRepo reservationsDBRepo = new ReservationsDBRepoImpl();
+        ReservationDataBase reservationDataBase = Injection.provideReservationDataBase();
+        ReservationsDBRepo reservationsDBRepo = Injection.provideDBRepo(reservationDataBase);
         reservationsDBRepo.clearRealmDataBaseReservation();
         EventBus.getDefault().post(new RefreshTables());
 

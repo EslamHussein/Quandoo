@@ -9,11 +9,6 @@ import android.os.SystemClock;
 
 import com.quandoo.utils.AlarmReceiver;
 
-import java.util.Calendar;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-
 
 /**
  * Created by Eslam Hussein on 10/27/17.
@@ -37,21 +32,9 @@ public class App extends Application {
         super.onCreate();
         instance = this;
 
-        initRealmBD();
         registerAlarmManger();
     }
 
-    private void initRealmBD() {
-
-        RealmConfiguration config = new RealmConfiguration.Builder(this)
-                .name("QuandooDB.realm")
-                .schemaVersion(0)
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.getInstance(config);
-        Realm.setDefaultConfiguration(config);
-
-    }
 
     private void registerAlarmManger() {
         long TIME_TO_CLEAR = 15 * 60 * 1000;

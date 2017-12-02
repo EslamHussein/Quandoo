@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 
 public class DialogUtils {
 
+
     public static Dialog getOkDialog(Context context, String title, String msg, String okTxt, String cancelTxt,
                                      final Runnable okAction) {
         AlertDialog.Builder builder;

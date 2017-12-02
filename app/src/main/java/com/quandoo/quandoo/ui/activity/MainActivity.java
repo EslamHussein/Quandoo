@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -20,8 +19,12 @@ import android.widget.TextView;
 import com.quandoo.base.view.BaseActivity;
 import com.quandoo.quandoo.R;
 import com.quandoo.quandoo.business.CustomerBusiness;
+import com.quandoo.quandoo.injection.Injection;
+import com.quandoo.quandoo.model.cloud.ReservationsCloudRepo;
 import com.quandoo.quandoo.model.cloud.ReservationsCloudRepoImpl;
 import com.quandoo.quandoo.model.cloud.dto.Customer;
+import com.quandoo.quandoo.model.db.ReservationDataBase;
+import com.quandoo.quandoo.model.db.ReservationsDBRepo;
 import com.quandoo.quandoo.model.db.ReservationsDBRepoImpl;
 import com.quandoo.quandoo.ui.adapter.CustomerAdapter;
 import com.quandoo.quandoo.ui.presenter.CustomerPresenter;
@@ -44,7 +47,10 @@ public class MainActivity extends BaseActivity<CustomerPresenter> implements Cus
 
     @Override
     protected CustomerPresenter createPresenter() {
-        return new CustomerPresenterImpl(new CustomerBusiness(new ReservationsDBRepoImpl(), new ReservationsCloudRepoImpl()));
+        ReservationDataBase reservationDataBase = Injection.provideReservationDataBase();
+        ReservationsDBRepo reservationsDBRepo =  Injection.provideDBRepo(reservationDataBase);
+        ReservationsCloudRepo cloudRepo = new ReservationsCloudRepoImpl();
+        return new CustomerPresenterImpl(new CustomerBusiness(reservationsDBRepo, cloudRepo));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.quandoo.quandoo.model.cloud;
 
 import com.quandoo.quandoo.model.cloud.dto.Customer;
+
 import java.util.List;
 
 /**

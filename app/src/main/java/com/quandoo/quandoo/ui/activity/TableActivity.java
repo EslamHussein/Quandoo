@@ -16,9 +16,13 @@ import android.widget.Toast;
 import com.quandoo.base.view.BaseActivity;
 import com.quandoo.quandoo.R;
 import com.quandoo.quandoo.business.TableBusiness;
+import com.quandoo.quandoo.injection.Injection;
+import com.quandoo.quandoo.model.cloud.ReservationsCloudRepo;
 import com.quandoo.quandoo.model.cloud.ReservationsCloudRepoImpl;
 import com.quandoo.quandoo.model.cloud.dto.Customer;
 import com.quandoo.quandoo.model.cloud.dto.Table;
+import com.quandoo.quandoo.model.db.ReservationDataBase;
+import com.quandoo.quandoo.model.db.ReservationsDBRepo;
 import com.quandoo.quandoo.model.db.ReservationsDBRepoImpl;
 import com.quandoo.quandoo.ui.adapter.TableAdapter;
 import com.quandoo.quandoo.ui.presenter.TablePresenter;
@@ -44,8 +48,11 @@ public class TableActivity extends BaseActivity<TablePresenter> implements Table
 
     @Override
     protected TablePresenter createPresenter() {
-        return new TablePresenterImpl(new TableBusiness(new ReservationsDBRepoImpl(),
-                new ReservationsCloudRepoImpl()));
+
+        ReservationDataBase reservationDataBase = Injection.provideReservationDataBase();
+        ReservationsDBRepo reservationsDBRepo = Injection.provideDBRepo(reservationDataBase);
+        ReservationsCloudRepo cloudRepo = new ReservationsCloudRepoImpl();
+        return new TablePresenterImpl(new TableBusiness(reservationsDBRepo, cloudRepo));
     }
 
     @Override
@@ -82,7 +89,6 @@ public class TableActivity extends BaseActivity<TablePresenter> implements Table
 
 
         if (table.isAvailable()) {
-            table.setAvailable(false);
             String dialogMsg = String.format(TextUtils.getString(R.string.are_you_sure_to_book_table_number), String.valueOf(table.getId()));
 
             Dialog bookTableDialog = DialogUtils.getOkDialog(this,
@@ -90,6 +96,7 @@ public class TableActivity extends BaseActivity<TablePresenter> implements Table
                     TextUtils.getString(R.string.cancel), new Runnable() {
                         @Override
                         public void run() {
+                            table.setAvailable(false);
                             getPresenter().bookTable(table);
                         }
                     });
